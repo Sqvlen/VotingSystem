@@ -1,0 +1,83 @@
+<div class="row" *ngIf="voting">
+    <div class="col-4 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <strong>Count votes: </strong>
+                <p>{{this.voting.countVote}}</p>
+                <strong>Voting is closed: </strong>
+                <p *ngIf="this.voting.isClosed">Yes</p>
+                <p *ngIf="!this.voting.isClosed">No</p>
+                <strong>Date of create: </strong>
+                <p>{{this.voting.created | date: 'dd MMM yyyy'}}</p>
+            </div>
+            <div class="card-footer me-2">
+                <button type="submit" [disabled]="!editForm.dirty" form="editForm" class="btn btn-secondary col-12">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 mt-2">
+        <button type="button" class="btn btn-danger mb-2" (click)="deleteVoting()">Delete</button>
+        <div class="alert alert-info pb-2 mt-2" *ngIf="editForm.dirty">
+            <p><strong>Information: </strong>Your have made changes. Any unsaved changes will be lost</p>
+        </div>
+        <tabset class="voting-tabs" #votingTabs>
+            <tab heading="Edit {{this.voting.title}}">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateVoting()">
+                    <h3 style="margin-top: 10px"><strong>Details: </strong></h3>
+                    <strong class="mt-1">Title: </strong>
+                    <textarea name="title" id="title" class="form-control" [(ngModel)]="this.voting.title"></textarea>
+                    <strong class="mt-1">Details:</strong>
+                    <textarea class="form-control" [(ngModel)]="this.voting.details" name="details" rows="6"></textarea>
+                    <strong>Description: </strong>
+                    <textarea class="form-control" [(ngModel)]="this.voting.description" name="description"
+                        rows="6"></textarea>
+                </form>
+            </tab>
+            <tab heading="Edit Variants" class="rows">
+                <h3 style="margin-top: 10px">Variants: </h3>
+                <div class="col-2">
+                    <button class="btn btn-success" (click)="addName()">Add</button>
+                </div>
+                <div class="col-4 mt-2">
+                    <select [(ngModel)]="currentName" class="form-select">
+                        <option default></option>
+                        <option *ngFor="let name of names">
+                            {{name.id}}. {{name.firstName}} {{name.lastName}}
+                        </option>
+                    </select>
+                </div>
+                <table class="table table-hover mt-2">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%">First Name</th>
+                            <th style="width: 25%">Last Name</th>
+                            <th style="width: 25%"></th>
+                            <th style="width: 25%">Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="align-middle">
+                        <tr *ngFor="let name of votingNames">
+                            <td>
+                                {{name.firstName}}
+                            </td>
+                            <td>{{name.lastName}}</td>
+                            <td></td>
+
+                            <td>
+                                <button (click)="deleteName(name.id)" type="button" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tab>
+        </tabset>
+    </div>
+</div>
+
+<div *ngIf="!voting">
+
+</div>

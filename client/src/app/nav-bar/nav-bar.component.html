@@ -1,0 +1,24 @@
+<div class="container">
+  <header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a class="nav-link me-2" routerLink="/home" routerLinkActive="active"
+          aria-current="page">Home</a></li>
+      <ng-container *ngIf="(accountService.currentUser$ | async) as User">
+        <li class="nav-item"><a class="nav-link me-2" routerLink="/list" routerLinkActive="active">List of
+            Votings</a></li>
+        <li class="nav-item"><a class="nav-link me-2" routerLink="/votings/my" routerLinkActive="active">List of
+            your Votings</a></li>
+        <li class="nav-item"><a class="nav-link me-2" routerLink="/votes/my" routerLinkActive="active">List of
+            your Votes</a></li>
+        <div class="dropdown text-end py-2" *ngIf="(accountService.currentUser$  | async) as User" dropdown>
+          <a class="d-block link text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" dropdownToggle>
+            Welcome
+          </a>
+          <ul class="dropdown-menu text-small" *dropdownMenu>
+            <li><a class="dropdown-item" (click)="signOut()">Sign out</a></li>
+          </ul>
+        </div>
+      </ng-container>
+    </ul>
+  </header>
+</div>

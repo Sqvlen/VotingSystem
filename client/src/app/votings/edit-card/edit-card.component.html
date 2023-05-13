@@ -1,0 +1,12 @@
+<div class="card mt-2">
+    <h5 class="card-header">{{this.voting.title}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">{{this.voting.details}}</h5>
+        <p class="card-text">{{this.voting.description}}</p>
+        <button [disabled]="!this.voting.isClosed" routerLink="edit/{{this.voting.id}}" type="button" class="btn btn-secondary me-2">Edit</button>
+        <button (click)="publish()" *ngIf="this.voting.isClosed" [disabled]="!this.voting.isClosed" type="button"
+            class="btn btn-primary">Publish</button>
+        <button (click)="unpublish()" *ngIf="!this.voting.isClosed" [disabled]="this.voting.isClosed" type="button"
+            class="btn btn-primary">Unpublish</button>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="row" *ngIf="voting">
+    <div class="col-4 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <strong>Count votes: </strong>
+                <p>{{this.voting.countVote}}</p>
+                <strong>Voting is closed: </strong>
+                <p *ngIf="this.voting.isClosed">Yes</p>
+                <p *ngIf="!this.voting.isClosed">No</p>
+                <br><strong>Date of create: </strong>
+                <p>{{this.voting.created | date: 'dd MMM yyyy'}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+
+        <tabset class="voting-tabs" #votingTabs>
+            <tab heading="About {{this.voting.title}}">
+                <h3 style="margin-top: 10px"><strong>Details: </strong></h3>
+                <strong class="mt-1">Title: </strong>
+                <p>{{this.voting.title}}</p>
+                <strong class="mt-1">Details:</strong>
+                <p>{{this.voting.details}}</p>
+                <strong>Description: </strong>
+                <p>{{this.voting.description}}</p>
+            </tab>
+            <tab heading="Variants" class="rows">
+                <h3 style="margin-top: 10px">Variants: </h3>
+                <table class="table table-hover mt-2">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%">First Name</th>
+                            <th style="width: 25%">Last Name</th>
+                            <th style="width: 25%"></th>
+                            <th style="width: 25%">Vote</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="align-middle">
+                        <tr *ngFor="let name of votingNames">
+                            <td>
+                                {{name.firstName}}
+                            </td>
+                            <td>{{name.lastName}}</td>
+
+                            <td></td>
+
+                            <td>
+                                <button (click)="vote(name.id)" type="button" class="btn btn-info">
+                                    Vote
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tab>
+        </tabset>
+
+    </div>
+</div>

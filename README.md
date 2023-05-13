@@ -1,2 +1,0 @@
-# SQBVotingSystem
-Курсова робота

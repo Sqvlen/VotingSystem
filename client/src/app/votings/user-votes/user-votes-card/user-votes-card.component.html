@@ -1,0 +1,10 @@
+<div class="card mt-2">
+    <h5 class="card-header">{{this.voting.title}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">{{this.voting.details}}</h5>
+        <p class="card-text">{{this.voting.description}}</p>
+        <h5 class="card-title">Your vote for: </h5>
+        <p class="card-text">{{this.name.firstName}} {{this.name.lastName}}</p>
+        <button [disabled]="this.voting.isClosed" class="btn btn-primary" routerLink="/list/{{this.voting.id}}">Go</button>
+    </div>
+</div>
