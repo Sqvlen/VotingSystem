@@ -31,7 +31,7 @@
                         <tr>
                             <th style="width: 25%">First Name</th>
                             <th style="width: 25%">Last Name</th>
-                            <th style="width: 25%"></th>
+                            <th style="width: 25%">Number of votes</th>
                             <th style="width: 25%">Vote</th>
                         </tr>
                     </thead>
@@ -43,7 +43,9 @@
                             </td>
                             <td>{{name.lastName}}</td>
 
-                            <td></td>
+                            <td>
+                                {{name.countVotes}}
+                            </td>
 
                             <td>
                                 <button (click)="vote(name.id)" type="button" class="btn btn-info">

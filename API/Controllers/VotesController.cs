@@ -47,6 +47,7 @@ public class VotesController : BaseApiController
     
         sourceUser.Votes.Add(userVote);
 
+        name.CountVotes++;
         voting.CountVote++;
         
         if (await _unitOfWork.Complete()) 
